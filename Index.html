@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sofía Pérez Villa | Servicios Contables & Audiovisuales</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --sage: #5c7a69;
+      --sage-light: #e8f0eb;
+      --gold: #c9a84c;
+      --gold-light: #fdf6e3;
+      --cream: #fafaf7;
+      --mist: #f2f4f0;
+      --white: #ffffff;
+      --text-body: #3d3d4a;
+      --text-muted: #7a7a8c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-body);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(250,250,247,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(92,122,105,0.15);
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--sage); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 3rem;
+      padding-top: 5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hero-text { padding-right: 4rem; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.5rem;
+      padding: 0.35rem 0.9rem;
+      background: var(--sage-light);
+      border-radius: 2rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--sage);
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      background: var(--sage);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #4a6657; transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--sage);
+      text-decoration: none;
+      border: 1.5px solid var(--sage);
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-left: 1rem;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: var(--sage-light); }
+
+    /* Hero visual panel */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 30px 80px rgba(26,26,46,0.1);
+      width: 100%;
+      max-width: 360px;
+      position: relative;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -12px; right: -12px;
+      width: 100%; height: 100%;
+      border-radius: 16px;
+      border: 2px solid var(--sage-light);
+      z-index: -1;
+    }
+    .hero-card-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .hero-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+    .stat-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .stat {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
+      background: var(--mist);
+      border-radius: 8px;
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--sage);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 2rem;
+      background: var(--sage-light);
+      color: var(--sage);
+      font-weight: 500;
+    }
+    .tag.gold { background: var(--gold-light); color: #9a7530; }
+
+    /* ── SECTIONS SHARED ── */
+    section {
+      padding: 5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-full {
+      max-width: 100%;
+      background: var(--mist);
+    }
+    .section-full .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 560px;
+      line-height: 1.8;
+    }
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    /* ── SERVICIOS ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(92,122,105,0.12);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--sage);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,26,46,0.1); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon {
+      width: 44px; height: 44px;
+      background: var(--sage-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.25rem;
+    }
+    .service-card.audiovisual .service-icon { background: var(--gold-light); }
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .service-desc {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── CONOCIMIENTOS ── */
+    .knowledge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .knowledge-item {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .knowledge-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--sage-light);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 2.5rem;
+    }
+    .knowledge-item:hover .knowledge-num { color: var(--sage); transition: color 0.2s; }
+    .knowledge-text h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+    .knowledge-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── MISIÓN / VISIÓN / VALORES ── */
+    .mvv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .mvv-card {
+      padding: 2.5rem;
+      background: var(--white);
+      border-radius: 12px;
+      border-top: 3px solid var(--sage);
+    }
+    .mvv-card.vision { border-top-color: var(--gold); }
+    .mvv-card.valores { border-top-color: var(--ink); }
+    .mvv-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .mvv-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .mvv-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .valores-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .valores-list li {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .valores-list li::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--ink);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── ECUACIÓN PATRIMONIAL ── */
+    .equation-box {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2.5rem;
+      text-align: center;
+      margin: 3rem auto;
+      max-width: 600px;
+      border: 1px solid rgba(92,122,105,0.15);
+    }
+    .equation {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 600;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .eq-part {
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+    }
+    .eq-activo { background: var(--sage-light); color: var(--sage); }
+    .eq-pasivo { background: #e8e8f4; color: #5c5c8a; }
+    .eq-patrimonio { background: var(--gold-light); color: #9a7530; }
+    .eq-symbol { color: var(--text-muted); }
+
+    /* ── CONTACTO ── */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .contact-info-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--sage-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-detail-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .contact-detail-value {
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-weight: 400;
+    }
+    .contact-cta {
+      background: var(--sage);
+      border-radius: 16px;
+      padding: 3rem;
+      color: var(--white);
+    }
+    .contact-cta h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .contact-cta p {
+      font-size: 0.92rem;
+      opacity: 0.8;
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .cta-btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      background: var(--white);
+      color: var(--sage);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .cta-btn-white:hover { opacity: 0.9; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    footer span { color: rgba(255,255,255,0.8); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+      .hero-text { padding-right: 0; margin-bottom: 3rem; }
+      .hero-visual { display: none; }
+      section { padding: 3.5rem 1.5rem; }
+      .section-full .section-inner { padding: 3.5rem 1.5rem; }
+      .mvv-grid { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .knowledge-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Sofía Pérez Villa</div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#conocimientos">Formación</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1200px;margin:0 auto;">
+  <div class="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Portafolio de Servicios 2024</span>
+      <h1>Claridad financiera,<br><em>resultados reales</em></h1>
+      <p class="hero-desc">Servicios contables y audiovisuales para personas naturales y pequeñas empresas. Formación técnica sólida al servicio de tu negocio.</p>
+      <div>
+        <a href="#servicios" class="btn-primary">Ver servicios →</a>
+        <a href="#contacto" class="btn-secondary">Contactar</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-label">Especialidades</div>
+        <h3>Contabilidad &<br>Producción Audiovisual</h3>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Servicios ofrecidos</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Áreas de expertise</div>
+          </div>
+        </div>
+        <div class="hero-tags">
+          <span class="tag">Libro Diario</span>
+          <span class="tag">PUC</span>
+          <span class="tag">IVA</span>
+          <span class="tag">Estados Financieros</span>
+          <span class="tag gold">Video & Edición</span>
+          <span class="tag">Retenciones</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<div class="section-full" id="servicios">
+  <div class="section-inner">
+    <p class="section-eyebrow">Lo que ofrezco</p>
+    <h2 class="section-title">Portafolio de Servicios</h2>
+    <p class="section-subtitle">Soluciones contables y audiovisuales pensadas para acompañar el crecimiento de tu negocio con claridad y profesionalismo.</p>
+    <div class="divider"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <div class="service-title">Asesoría Contable Básica</div>
+        <p class="service-desc">Orientación sobre conceptos contables, manejo de cuentas y aplicación del Plan Único de Cuentas (PUC) adaptado a las necesidades de tu negocio.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📒</div>
+        <div class="service-title">Registro de Operaciones Contables</div>
+        <p class="service-desc">Elaboración de registros en el libro diario aplicando correctamente la dinámica de débitos y créditos para cada transacción.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <div class="service-title">Elaboración de Estados Financieros</div>
+        <p class="service-desc">Preparación del Estado de Situación Financiera y el Estado de Resultados, brindando una visión clara de la situación económica de la empresa.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧾</div>
+        <div class="service-title">Manejo de Impuestos y Retenciones</div>
+        <p class="service-desc">Cálculo y orientación básica sobre IVA, retenciones en la fuente y otras obligaciones tributarias aplicables a tu empresa o actividad.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🗂️</div>
+        <div class="service-title">Organización Documental</div>
+        <p class="service-desc">Ordenamiento de soportes contables — facturas, recibos, comprobantes — para su correcto archivo y consulta posterior.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <div class="service-title">Análisis de Información Financiera</div>
+        <p class="service-desc">Revisión e interpretación de los estados financieros para apoyar la toma de decisiones gerenciales y estratégicas.</p>
+      </div>
+      <div class="service-card audiovisual">
+        <div class="service-icon">🎬</div>
+        <div class="service-title">Producción Audiovisual</div>
+        <p class="service-desc">Grabación y edición de video para contenido institucional, promocional, redes sociales y eventos, combinando creatividad con presentación profesional de marca.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONOCIMIENTOS -->
+<section id="conocimientos">
+  <p class="section-eyebrow">Formación técnica</p>
+  <h2 class="section-title">Fundamentos Contables</h2>
+  <p class="section-subtitle">Conocimientos sólidos adquiridos durante la Técnica en Contabilidad, aplicados directamente en cada servicio ofrecido.</p>
+  <div class="divider"></div>
+
+  <div class="equation-box">
+    <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:1.25rem;font-weight:500;">La base de toda contabilidad</p>
+    <div class="equation">
+      <span class="eq-part eq-activo">Activo</span>
+      <span class="eq-symbol">=</span>
+      <span class="eq-part eq-pasivo">Pasivo</span>
+      <span class="eq-symbol">+</span>
+      <span class="eq-part eq-patrimonio">Patrimonio</span>
+    </div>
+  </div>
+
+  <div class="knowledge-grid">
+    <div class="knowledge-item">
+      <div class="knowledge-num">01</div>
+      <div class="knowledge-text">
+        <h4>Concepto de Contabilidad</h4>
+        <p>Disciplina que permite registrar, clasificar, resumir e interpretar las operaciones económicas de una empresa para la toma de decisiones y cumplimiento tributario.</p>
+      </div>
+    </div>
+    <div class="knowledge-item">
+      <div class="knowledge-num">02</div>
+      <div class="knowledge-text">
+        <h4>Ecuación Patrimonial</h4>
+        <p>Base del sistema contable que establece la relación entre activos y sus fuentes de financiación. Toda operación conserva siempre el equilibrio.</p>
+      </div>
+    </div>
+    <div class="knowledge-item">
+      <div class="knowledge-num">03</div>
+      <div class="knowledge-text">
+        <h4>Plan Único de Cuentas (PUC)</h4>
+        <p>Herramienta normativa que clasifica y codifica de manera uniforme las cuentas contables en clases, grupos, cuentas y subcuentas.</p>
+      </div>
+    </div>
+    <div class="knowledge-item">
+      <div class="knowledge-num">04</div>
+      <div class="knowledge-text">
+        <h4>Dinámica de Cuentas</h4>
+        <p>Reglas que determinan cómo cada cuenta aumenta o disminuye. Activos y gastos aumentan al débito; pasivos, patrimonio e ingresos aumentan al crédito.</p>
+      </div>
+    </div>
+    <div class="knowledge-item">
+      <div class="knowledge-num">05</div>
+      <div class="knowledge-text">
+        <h4>Libro Diario y Partida Doble</h4>
+        <p>Registro cronológico de todas las operaciones económicas, donde cada transacción afecta como mínimo a dos cuentas, manteniendo siempre el equilibrio.</p>
+      </div>
+    </div>
+    <div class="knowledge-item">
+      <div class="knowledge-num">06</div>
+      <div class="knowledge-text">
+        <h4>Impuestos y Retenciones</h4>
+        <p>Manejo de IVA, retenciones en la fuente y demás obligaciones tributarias. Conocimiento esencial para mantener la empresa al día con la DIAN.</p>
+      </div>
+    </div>
+    <div class="knowledge-item">
+      <div class="knowledge-num">07</div>
+      <div class="knowledge-text">
+        <h4>Estados Financieros</h4>
+        <p>Elaboración del Balance General y Estado de Resultados como herramientas para la toma de decisiones gerenciales, financieras y de inversión.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISIÓN VISIÓN VALORES -->
+<div class="section-full" id="nosotros">
+  <div class="section-inner">
+    <p class="section-eyebrow">Quién soy</p>
+    <h2 class="section-title">Misión, Visión y Valores</h2>
+    <div class="divider"></div>
+    <div class="mvv-grid">
+      <div class="mvv-card">
+        <div class="mvv-label">Misión</div>
+        <div class="mvv-title">Lo que hago hoy</div>
+        <p class="mvv-text">Brindar servicios contables confiables y de calidad, aplicando los conocimientos técnicos adquiridos, contribuyendo al orden financiero y al cumplimiento de las obligaciones legales de personas naturales y pequeñas empresas.</p>
+      </div>
+      <div class="mvv-card vision">
+        <div class="mvv-label">Visión</div>
+        <div class="mvv-title">Hacia dónde voy</div>
+        <p class="mvv-text">Consolidarme como una profesional íntegra y competente en el área contable, en constante actualización, capaz de ofrecer soluciones eficientes y oportunas que generen valor y confianza a quienes requieran mis servicios.</p>
+      </div>
+      <div class="mvv-card valores">
+        <div class="mvv-label">Valores</div>
+        <div class="mvv-title">Cómo trabajo</div>
+        <ul class="valores-list">
+          <li>Honestidad</li>
+          <li>Responsabilidad</li>
+          <li>Confidencialidad</li>
+          <li>Compromiso</li>
+          <li>Mejora continua</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <p class="section-eyebrow">Hablemos</p>
+  <h2 class="section-title">¿Listo para empezar?</h2>
+  <div class="divider"></div>
+  <div class="contact-wrap">
+    <div>
+      <p style="font-size:1rem;color:var(--text-muted);font-weight:300;line-height:1.8;margin-bottom:0.5rem;">
+        Estoy disponible para acompañarte en el orden contable de tu negocio o para dar vida a tu próximo proyecto audiovisual. Escríbeme y con gusto te oriento.
+      </p>
+      <div class="contact-info-list">
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-detail-label">Correo electrónico</div>
+            <div class="contact-detail-value">perezsofia0690@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-detail-label">Teléfono / WhatsApp</div>
+            <div class="contact-detail-value">321 229 9187</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🎓</div>
+          <div>
+            <div class="contact-detail-label">Formación</div>
+            <div class="contact-detail-value">Técnica en Contabilidad | Productora Audiovisual</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <h3>Sofía Pérez Villa</h3>
+      <p>Técnica en Contabilidad y Productora Audiovisual. Comprometida con la excelencia, la honestidad y el crecimiento de cada cliente.</p>
+      <a href="mailto:perezsofia0690@gmail.com" class="cta-btn-white">Enviar mensaje →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 <span>Sofía Pérez Villa</span> — Servicios Contables & Audiovisuales · Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>
